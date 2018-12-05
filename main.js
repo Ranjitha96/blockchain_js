@@ -31,11 +31,32 @@ class Blockchain{
 	newBlock.hash=newBlock.calculateHash();
 	this.chain.push(newBlock);
     }
+    isChainVaild(){
+	for(let i=1;i<this.chain.length;i++){
+			const currentBlock= this.chain[i];
+			const previousBlock= this.chain[i-1];
+			
+			if(currentBlock.hash!=currentBlock.calculateHash()){
+				return false;	
+			}
+			if(currenBlock.previousHash !== previousBlock.hash){
+				return false;
+			}
+			
+		}
+		return true;
+	}
 }
  
 let savjeeCoin = new Blockchain();
 savjeeCoin.addBlock(new Block(1,"2/23/22",{amount:4}));
 savjeeCoin.addBlock(new Block(2,"4/545/655",{amount:9}));
 
-console.log(JSON.stringify(savjeeCoin,null,4));
+//console.log(JSON.stringify(savjeeCoin,null,4));
+console.log('Is blockchain valid?' + savjeeCoin.isChainVaild());
+
+savjeeCoin.chain[1].data = {amount:100};
+savjeeCoin.chain[1].hash=savjeeCoin.chain[1].calculateHash();
+
+console.log('Is blockchain valid?' +savjeeCoin.isChainVaild());
 
